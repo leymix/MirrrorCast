@@ -2,7 +2,6 @@ name: Android CI/CD
 
 on:
   pull_request:
-    types: [opened, synchronize, reopened, closed]
     branches:
       - main
       - staging
@@ -84,19 +83,13 @@ jobs:
         retention-days: 7
 
   release:
-    needs: []
+    needs: build
     runs-on: ubuntu-latest
-    if: |
-      github.event_name == 'workflow_dispatch' ||
-      (github.event_name == 'pull_request' && 
-       github.event.pull_request.merged == true && 
-       (github.event.pull_request.base.ref == 'main' || github.event.pull_request.base.ref == 'stg' || github.event.pull_request.base.ref == 'staging'))
+    if: github.event_name == 'workflow_dispatch'
     
     steps:
     - name: Checkout code
       uses: actions/checkout@v4
-      with:
-        ref: ${{ github.event.pull_request.base.ref || github.ref }}
       
     - name: Set up JDK 17
       uses: actions/setup-java@v4
@@ -119,22 +112,13 @@ jobs:
       run: |
         if [ "${{ github.event_name }}" == "workflow_dispatch" ]; then
           ENV="${{ github.event.inputs.environment }}"
-        elif [ "${{ github.event_name }}" == "pull_request" ]; then
-          BASE_REF="${{ github.event.pull_request.base.ref }}"
-          if [ "$BASE_REF" == "main" ]; then
-            ENV="prod"
-          elif [ "$BASE_REF" == "stg" ] || [ "$BASE_REF" == "staging" ]; then
-            ENV="stg"
-          else
-            ENV="prod"
-          fi
         elif [ "${{ github.ref }}" == "refs/heads/main" ]; then
           ENV="prod"
         else
           ENV="prod"
         fi
         echo "environment=$ENV" >> $GITHUB_OUTPUT
-        echo "Releasing for environment: $ENV (from ${{ github.event_name }})"
+        echo "Releasing for environment: $ENV"
       
     - name: Verify Gradle Wrapper
       run: |
