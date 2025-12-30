@@ -111,6 +111,8 @@ android {
             resValue("string", "app_name", "CastLink Dev")
             buildConfigField("String", "ENVIRONMENT", "\"dev\"")
             buildConfigField("String", "API_BASE_URL", "\"https://api-dev.mirrorcast.com\"")
+            // GitHub repository bilgisi - kendi repository'nizi buraya girin
+            buildConfigField("String", "GITHUB_REPO", "\"YOUR_GITHUB_USERNAME/MirrorCast\"")
         }
         
         create("stg") {
@@ -120,6 +122,8 @@ android {
             resValue("string", "app_name", "CastLink Staging")
             buildConfigField("String", "ENVIRONMENT", "\"staging\"")
             buildConfigField("String", "API_BASE_URL", "\"https://api-staging.mirrorcast.com\"")
+            // GitHub repository bilgisi - kendi repository'nizi buraya girin
+            buildConfigField("String", "GITHUB_REPO", "\"YOUR_GITHUB_USERNAME/MirrorCast\"")
         }
         
         create("prod") {

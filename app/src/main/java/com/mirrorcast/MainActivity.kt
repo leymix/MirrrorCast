@@ -14,6 +14,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.platform.LocalContext
 import com.mirrorcast.ui.onboarding.OnboardingScreen
 import com.mirrorcast.ui.settings.SettingsScreen
@@ -44,7 +45,7 @@ class MainActivity : ComponentActivity() {
                         )
                     )
                     
-                    val updateState by updateViewModel.updateState
+                    val updateState = updateViewModel.updateState.collectAsState().value
                     
                     // Check for updates when app starts (only for production)
                     LaunchedEffect(Unit) {
