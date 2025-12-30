@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>CastLink - Screen Mirroring</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#135bec",
+                        "background-light": "#f6f6f8",
+                        "background-dark": "#101622",
+                        "card-dark": "#1a2436",
+                        "card-light": "#ffffff",
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "2xl": "1rem", "full": "9999px"},
+                    boxShadow: {
+                        "glow": "0 0 20px rgba(19, 91, 236, 0.5)",
+                        "inner-glow": "inset 0 0 20px rgba(19, 91, 236, 0.2)",
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark font-display antialiased transition-colors duration-200">
+<div class="relative flex h-full min-h-screen w-full flex-col overflow-x-hidden max-w-md mx-auto shadow-2xl">
+<!-- Header -->
+<header class="flex items-center justify-between p-6 pb-4">
+<h2 class="text-slate-900 dark:text-white text-xl font-bold leading-tight tracking-tight flex-1">CastLink</h2>
+<div class="flex items-center gap-3">
+<button class="flex items-center justify-center w-10 h-10 rounded-full bg-slate-200 dark:bg-[#1f2937] text-slate-900 dark:text-white hover:bg-slate-300 dark:hover:bg-[#2d3b4e] transition-colors">
+<span class="material-symbols-outlined text-[24px]">help_outline</span>
+</button>
+<button class="flex items-center justify-center w-10 h-10 rounded-full bg-slate-200 dark:bg-[#1f2937] text-slate-900 dark:text-white hover:bg-slate-300 dark:hover:bg-[#2d3b4e] transition-colors">
+<span class="material-symbols-outlined text-[24px]">settings</span>
+</button>
+</div>
+</header>
+<!-- Status Indicator -->
+<div class="px-6 pb-6">
+<div class="flex items-center gap-2 py-1.5 px-3 pr-4 rounded-full bg-blue-100 dark:bg-[#135bec]/20 w-fit">
+<span class="relative flex h-2.5 w-2.5">
+<span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
+<span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-primary"></span>
+</span>
+<span class="text-primary text-xs font-bold uppercase tracking-wide">Ready to Connect</span>
+</div>
+</div>
+<!-- Hero / Main Action Area -->
+<main class="flex-1 flex flex-col items-center justify-center px-6 py-4 gap-8">
+<div class="text-center space-y-2">
+<h1 class="text-slate-900 dark:text-white text-4xl font-bold tracking-tight leading-tight">
+                    Start Mirroring
+                </h1>
+<p class="text-slate-500 dark:text-slate-400 text-base font-medium max-w-[280px] mx-auto">
+                    Tap below to cast your screen to a nearby TV instantly.
+                </p>
+</div>
+<!-- Big Circular Button -->
+<div class="relative group">
+<!-- Outer Glow/Pulse Rings -->
+<div class="absolute -inset-4 bg-primary/20 rounded-full blur-xl opacity-75 group-hover:opacity-100 transition duration-500 animate-pulse"></div>
+<div class="absolute -inset-1 bg-gradient-to-r from-blue-600 to-indigo-600 rounded-full opacity-30 blur group-hover:opacity-60 transition duration-500"></div>
+<button class="relative flex flex-col items-center justify-center w-48 h-48 rounded-full bg-gradient-to-br from-[#135bec] to-[#0d47b5] text-white shadow-glow transform active:scale-95 transition-all duration-300 border-4 border-[#1f2937]/30 dark:border-[#101622]">
+<span class="material-symbols-outlined text-[64px] mb-2">cast_connected</span>
+<span class="text-sm font-bold tracking-widest uppercase opacity-90">Connect</span>
+</button>
+</div>
+</main>
+<!-- Nearby Devices Section -->
+<div class="px-6 py-6 pb-24 w-full">
+<div class="flex items-center justify-between mb-4">
+<h3 class="text-slate-900 dark:text-white text-lg font-bold tracking-tight">Nearby Devices</h3>
+<button class="text-primary text-sm font-bold hover:text-blue-400 transition-colors">Scan Again</button>
+</div>
+<div class="flex flex-col gap-3">
+<!-- Device Item 1 -->
+<div class="flex items-center p-4 rounded-xl bg-card-light dark:bg-card-dark border border-slate-200 dark:border-slate-800 hover:border-primary/50 dark:hover:border-primary/50 cursor-pointer transition-all shadow-sm">
+<div class="h-10 w-10 rounded-lg bg-slate-100 dark:bg-slate-800 flex items-center justify-center text-slate-600 dark:text-slate-400 mr-4">
+<span class="material-symbols-outlined">tv</span>
+</div>
+<div class="flex-1">
+<h4 class="text-slate-900 dark:text-white font-bold text-base leading-none mb-1">Samsung QLED 85"</h4>
+<p class="text-slate-500 dark:text-slate-500 text-xs font-medium">Living Room • 5Ghz</p>
+</div>
+<div class="h-8 w-8 rounded-full bg-slate-100 dark:bg-slate-800 flex items-center justify-center text-slate-400">
+<span class="material-symbols-outlined text-sm">chevron_right</span>
+</div>
+</div>
+<!-- Device Item 2 -->
+<div class="flex items-center p-4 rounded-xl bg-card-light dark:bg-card-dark border border-slate-200 dark:border-slate-800 hover:border-primary/50 dark:hover:border-primary/50 cursor-pointer transition-all shadow-sm">
+<div class="h-10 w-10 rounded-lg bg-slate-100 dark:bg-slate-800 flex items-center justify-center text-slate-600 dark:text-slate-400 mr-4">
+<span class="material-symbols-outlined">chromecast_device</span>
+</div>
+<div class="flex-1">
+<h4 class="text-slate-900 dark:text-white font-bold text-base leading-none mb-1">Roku Stick 4K</h4>
+<p class="text-slate-500 dark:text-slate-500 text-xs font-medium">Bedroom • 2.4Ghz</p>
+</div>
+<div class="h-8 w-8 rounded-full bg-slate-100 dark:bg-slate-800 flex items-center justify-center text-slate-400">
+<span class="material-symbols-outlined text-sm">chevron_right</span>
+</div>
+</div>
+<!-- Quick Tip Card (Small carousel item style) -->
+<div class="mt-4 p-4 rounded-xl bg-gradient-to-r from-indigo-900/40 to-blue-900/40 border border-indigo-500/20 flex items-center gap-3">
+<div class="bg-primary/20 p-2 rounded-full">
+<span class="material-symbols-outlined text-primary text-xl">lightbulb</span>
+</div>
+<div>
+<p class="text-slate-900 dark:text-white text-sm font-bold">Pro Tip</p>
+<p class="text-slate-500 dark:text-slate-400 text-xs">Ensure both devices are on the same Wi-Fi.</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Bottom Navigation -->
+<nav class="fixed bottom-0 w-full max-w-md bg-white/90 dark:bg-[#111722]/90 backdrop-blur-md border-t border-slate-200 dark:border-slate-800 pb-safe pt-2">
+<div class="flex justify-around items-center h-16">
+<button class="flex flex-col items-center justify-center w-full h-full space-y-1 text-primary">
+<span class="material-symbols-outlined filled">home</span>
+<span class="text-[10px] font-bold tracking-wide">Home</span>
+</button>
+<button class="flex flex-col items-center justify-center w-full h-full space-y-1 text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 transition-colors">
+<span class="material-symbols-outlined">smart_display</span>
+<span class="text-[10px] font-bold tracking-wide">Media</span>
+</button>
+<button class="flex flex-col items-center justify-center w-full h-full space-y-1 text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 transition-colors">
+<span class="material-symbols-outlined">settings</span>
+<span class="text-[10px] font-bold tracking-wide">Settings</span>
+</button>
+</div>
+</nav>
+<!-- Safe area spacing for mobile -->
+<div class="h-6"></div>
+</div>
+<style>
+        .pb-safe {
+            padding-bottom: env(safe-area-inset-bottom, 20px);
+        }
+        
+        /* Custom scrollbar for webkit */
+        ::-webkit-scrollbar {
+            width: 4px;
+        }
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #334155;
+            border-radius: 4px;
+        }
+        
+        .material-symbols-outlined {
+          font-variation-settings:
+          'FILL' 0,
+          'wght' 400,
+          'GRAD' 0,
+          'opsz' 24
+        }
+        
+        .material-symbols-outlined.filled {
+            font-variation-settings: 'FILL' 1;
+        }
+    </style>
+</body></html>

@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>How It Works - Onboarding</title>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;family=Noto+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Theme Configuration -->
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#135bec",
+                        "background-light": "#f6f6f8",
+                        "background-dark": "#101622",
+                        "card-light": "#ffffff",
+                        "card-dark": "#1C2333",
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk", "sans-serif"],
+                        "body": ["Noto Sans", "sans-serif"],
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "2xl": "1rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="font-display antialiased text-slate-900 dark:text-white bg-background-light dark:bg-background-dark">
+<div class="relative flex h-full min-h-screen w-full flex-col overflow-x-hidden group/design-root">
+<!-- Header / Navigation -->
+<div class="flex items-center justify-between p-4 pb-2 z-10">
+<!-- Left placeholder for balance if needed, or back button -->
+<div class="w-12"></div>
+<!-- Page Indicators -->
+<div class="flex flex-row items-center justify-center gap-2">
+<div class="h-2 w-2 rounded-full bg-slate-300 dark:bg-[#324467]"></div>
+<div class="h-2 w-2 rounded-full bg-slate-300 dark:bg-[#324467]"></div>
+<div class="h-2 w-8 rounded-full bg-primary transition-all duration-300"></div>
+</div>
+<!-- Skip Button -->
+<div class="flex w-12 items-center justify-end cursor-pointer">
+<p class="text-slate-500 dark:text-[#92a4c9] text-sm font-bold leading-normal tracking-wide hover:text-primary transition-colors">Skip</p>
+</div>
+</div>
+<!-- Scrollable Content -->
+<div class="flex-1 flex flex-col pb-24">
+<!-- Headline -->
+<div class="px-4 pt-4 text-center z-10">
+<h1 class="text-3xl font-bold leading-tight tracking-tight mb-2">How it Works</h1>
+<p class="text-slate-500 dark:text-[#92a4c9] text-base font-normal">Start mirroring in three simple steps</p>
+</div>
+<!-- Hero Image / Illustration Area -->
+<div class="relative w-full px-8 py-6 flex justify-center items-center">
+<!-- Background Glow Effect -->
+<div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-48 h-48 bg-primary/20 rounded-full blur-[60px] pointer-events-none"></div>
+<div class="relative w-full max-w-[280px] aspect-[4/3] rounded-2xl overflow-hidden shadow-xl ring-1 ring-white/10" data-alt="Abstract 3D illustration showing a smartphone connecting wirelessly to a smart TV with a glowing blue wave">
+<!-- Placeholder for the actual image requested -->
+<div class="w-full h-full bg-gradient-to-br from-[#1E293B] to-[#0F172A] relative flex items-center justify-center">
+<!-- Simplified CSS Representation of Mirroring -->
+<div class="flex items-center gap-4 opacity-90">
+<span class="material-symbols-outlined text-5xl text-slate-400">smartphone</span>
+<div class="flex space-x-1">
+<div class="w-2 h-2 rounded-full bg-primary animate-pulse"></div>
+<div class="w-2 h-2 rounded-full bg-primary animate-pulse delay-75"></div>
+<div class="w-2 h-2 rounded-full bg-primary animate-pulse delay-150"></div>
+</div>
+<span class="material-symbols-outlined text-6xl text-white">tv</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Instructional Cards (Timeline Adapted) -->
+<div class="px-4 flex flex-col gap-4 mt-2">
+<!-- Step 1 -->
+<div class="bg-card-light dark:bg-card-dark p-4 rounded-xl shadow-sm border border-slate-100 dark:border-slate-800 flex items-start gap-4 relative overflow-hidden group">
+<!-- Subtle gradient accent on hover/active -->
+<div class="absolute left-0 top-0 bottom-0 w-1 bg-primary/50 rounded-l-xl"></div>
+<div class="flex-shrink-0 w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[24px]">wifi</span>
+</div>
+<div class="flex flex-col pt-1">
+<h3 class="text-base font-bold text-slate-900 dark:text-white leading-tight">Connect to Wi-Fi</h3>
+<p class="text-sm text-slate-500 dark:text-[#92a4c9] mt-1 leading-snug font-body">Ensure your phone and TV are connected to the same network.</p>
+</div>
+</div>
+<!-- Step 2 -->
+<div class="bg-card-light dark:bg-card-dark p-4 rounded-xl shadow-sm border border-slate-100 dark:border-slate-800 flex items-start gap-4 relative overflow-hidden">
+<div class="absolute left-0 top-0 bottom-0 w-1 bg-primary/50 rounded-l-xl"></div>
+<div class="flex-shrink-0 w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[24px]">cast_connected</span>
+</div>
+<div class="flex flex-col pt-1">
+<h3 class="text-base font-bold text-slate-900 dark:text-white leading-tight">Select Device</h3>
+<p class="text-sm text-slate-500 dark:text-[#92a4c9] mt-1 leading-snug font-body">Tap the cast button and select your TV from the device list.</p>
+</div>
+</div>
+<!-- Step 3 -->
+<div class="bg-card-light dark:bg-card-dark p-4 rounded-xl shadow-sm border border-slate-100 dark:border-slate-800 flex items-start gap-4 relative overflow-hidden">
+<div class="absolute left-0 top-0 bottom-0 w-1 bg-primary/50 rounded-l-xl"></div>
+<div class="flex-shrink-0 w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[24px]">present_to_all</span>
+</div>
+<div class="flex flex-col pt-1">
+<h3 class="text-base font-bold text-slate-900 dark:text-white leading-tight">Start Mirroring</h3>
+<p class="text-sm text-slate-500 dark:text-[#92a4c9] mt-1 leading-snug font-body">Tap 'Start Broadcast' to instantly mirror your screen.</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Sticky Bottom CTA -->
+<div class="fixed bottom-0 left-0 w-full p-6 pt-2 bg-gradient-to-t from-background-light via-background-light to-transparent dark:from-background-dark dark:via-background-dark dark:to-transparent z-50">
+<button class="w-full h-14 bg-primary hover:bg-blue-600 active:scale-[0.98] transition-all rounded-full flex items-center justify-center shadow-lg shadow-primary/25 group">
+<span class="text-white font-bold text-lg tracking-wide mr-2">Get Started</span>
+<span class="material-symbols-outlined text-white group-hover:translate-x-1 transition-transform">arrow_forward</span>
+</button>
+</div>
+</div>
+</body></html>

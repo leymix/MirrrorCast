@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Welcome Onboarding Screen</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;700&amp;family=Noto+Sans:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "primary": "#135bec",
+              "background-light": "#f6f6f8",
+              "background-dark": "#101622",
+            },
+            fontFamily: {
+              "display": ["Space Grotesk", "sans-serif"],
+              "body": ["Noto Sans", "sans-serif"],
+            },
+            borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark text-neutral-900 dark:text-white font-display antialiased overflow-x-hidden selection:bg-primary selection:text-white">
+<div class="relative flex h-full min-h-screen w-full flex-col justify-between">
+<!-- Header -->
+<div class="flex items-center p-4 pt-6 pb-2 justify-between z-10">
+<!-- Invisible spacer to balance the Skip button for centering the title -->
+<div class="w-12"></div>
+<h2 class="text-lg font-bold leading-tight tracking-[-0.015em] text-center">Smart Cast</h2>
+<div class="flex w-12 items-center justify-end">
+<button class="text-neutral-500 dark:text-[#92a4c9] text-base font-bold leading-normal tracking-[0.015em] shrink-0 hover:text-primary transition-colors">
+                    Skip
+                </button>
+</div>
+</div>
+<!-- Main Content: Hero & Description -->
+<div class="flex-1 flex flex-col items-center justify-center w-full max-w-md mx-auto px-6 gap-8">
+<!-- Hero Illustration with Glow Effect -->
+<div class="relative w-full aspect-square max-w-[320px] flex items-center justify-center">
+<!-- Radial Gradient Glow -->
+<div class="absolute inset-0 bg-primary/20 blur-[60px] rounded-full transform scale-75"></div>
+<!-- Main Image Card -->
+<div class="relative w-full h-full bg-center bg-no-repeat bg-cover rounded-2xl shadow-2xl ring-1 ring-white/10 overflow-hidden" data-alt="Isometric illustration of a smartphone casting content to a smart TV" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCmL3XAd0m6zAmsrX1y2egdNy4YcCQu7sdZ6VGCqC2oeObqdpgfNRKsZKVjcdCYC5kj3wDf8J2R-vcEA5Y0xDCN6bSty6vIUUZpcxRSZp6LN7C7kEX2R07_I39Fz-Qglfj8vm0R31rUnBa1O3Wmo80CJl1fMOLxEe5tXKgrccyapE_wcTw1cv9Y9mHHnT3HCMrVWbwXAjd0md8FlcQGLFLEgny20aeWS4Y5lxOGdQnhFyk_V1HI6qsrDX1fFlwPvNURAx_l0-vPBB4");'>
+<!-- Overlay for text readability if needed, or subtle gradient -->
+<div class="absolute inset-0 bg-gradient-to-t from-background-dark/80 via-transparent to-transparent opacity-60"></div>
+</div>
+</div>
+<!-- Text Content -->
+<div class="flex flex-col items-center text-center gap-3">
+<h1 class="text-3xl md:text-4xl font-bold leading-tight tracking-tight">
+                    Mirror to any Screen
+                </h1>
+<p class="text-neutral-500 dark:text-[#92a4c9] text-base md:text-lg font-normal leading-relaxed max-w-[300px]">
+                    Stream photos, videos, and games to your TV in real-time with zero latency.
+                </p>
+</div>
+</div>
+<!-- Footer Actions -->
+<div class="w-full flex flex-col items-center pb-8 pt-4 px-4 gap-6 bg-gradient-to-t from-background-light dark:from-background-dark to-transparent">
+<!-- Page Indicators -->
+<div class="flex flex-row items-center justify-center gap-3">
+<div class="h-2 w-2 rounded-full bg-primary ring-2 ring-primary/30"></div>
+<div class="h-2 w-2 rounded-full bg-neutral-300 dark:bg-[#324467]"></div>
+<div class="h-2 w-2 rounded-full bg-neutral-300 dark:bg-[#324467]"></div>
+</div>
+<!-- Primary Action -->
+<div class="w-full max-w-[480px]">
+<button class="group flex w-full cursor-pointer items-center justify-center overflow-hidden rounded-xl h-14 px-5 bg-primary hover:bg-primary/90 active:scale-[0.98] transition-all text-white gap-3 shadow-lg shadow-primary/25">
+<span class="material-symbols-outlined text-[24px]">cast</span>
+<span class="text-lg font-bold leading-normal tracking-wide">Start Mirroring</span>
+</button>
+</div>
+<!-- Meta / Trust Text -->
+<div class="flex items-center justify-center gap-2 text-neutral-400 dark:text-[#92a4c9] text-xs font-medium">
+<span class="material-symbols-outlined text-[14px]">lock</span>
+<p>Secure connection • No data collection</p>
+</div>
+</div>
+</div>
+</body></html>

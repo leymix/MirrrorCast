@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Device Discovery Screen</title>
+<!-- Google Fonts: Space Grotesk -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#135bec",
+                        "background-light": "#f6f6f8",
+                        "background-dark": "#101622",
+                        "card-light": "#ffffff",
+                        "card-dark": "#1c2433",
+                        "text-secondary-light": "#64748b",
+                        "text-secondary-dark": "#92a4c9",
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "2xl": "1rem",
+                        "3xl": "1.5rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        /* Custom Utilities for visual effects */
+        .glass-panel {
+            background: rgba(19, 91, 236, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(19, 91, 236, 0.1);
+        }
+        .radar-circle {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            border-radius: 50%;
+            border: 1px solid rgba(19, 91, 236, 0.3);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-white font-display antialiased transition-colors duration-200">
+<div class="relative flex h-full min-h-screen w-full flex-col overflow-hidden max-w-md mx-auto shadow-2xl bg-background-light dark:bg-background-dark">
+<!-- Background Gradient Mesh -->
+<div class="absolute top-0 left-0 right-0 h-96 bg-gradient-to-b from-primary/10 to-transparent pointer-events-none z-0"></div>
+<!-- Top App Bar -->
+<div class="relative z-10 flex items-center px-6 py-5 justify-between pt-12"> <!-- pt-12 for status bar space -->
+<button class="text-slate-900 dark:text-white flex size-10 shrink-0 items-center justify-center rounded-full hover:bg-black/5 dark:hover:bg-white/10 transition-colors">
+<span class="material-symbols-outlined text-[24px]">arrow_back</span>
+</button>
+<h2 class="text-slate-900 dark:text-white text-lg font-bold leading-tight tracking-[-0.015em] text-center flex-1">Cast to Device</h2>
+<button class="flex items-center justify-end rounded-full px-3 py-1 hover:bg-black/5 dark:hover:bg-white/10 transition-colors">
+<span class="text-primary font-bold text-sm leading-normal tracking-[0.015em] shrink-0">Help</span>
+</button>
+</div>
+<!-- Radar / Scanning Visual -->
+<div class="relative z-10 flex flex-col items-center justify-center py-8">
+<div class="relative size-40 flex items-center justify-center mb-6">
+<!-- Static Radar Rings -->
+<div class="radar-circle size-40 border-primary/10"></div>
+<div class="radar-circle size-28 border-primary/20"></div>
+<div class="radar-circle size-16 border-primary/40 bg-primary/5"></div>
+<!-- Center Icon -->
+<div class="relative z-10 bg-primary/10 dark:bg-primary/20 p-4 rounded-full text-primary">
+<span class="material-symbols-outlined text-[32px] fill-1">radar</span>
+</div>
+</div>
+<h2 class="text-slate-900 dark:text-white text-2xl font-bold leading-tight px-4 text-center">Searching for displays...</h2>
+<p class="text-text-secondary-light dark:text-text-secondary-dark text-sm mt-2 text-center px-8">Ensure your device is turned on and connected to the same Wi-Fi network.</p>
+</div>
+<!-- Scrollable Content -->
+<div class="flex-1 overflow-y-auto px-4 pb-8 z-10">
+<div class="flex flex-col gap-3">
+<div class="text-xs font-bold text-text-secondary-light dark:text-text-secondary-dark uppercase tracking-wider mb-1 ml-2">Available Devices</div>
+<!-- List Item 1: Active/Strong Signal -->
+<div class="group relative flex items-center gap-4 bg-card-light dark:bg-card-dark p-4 rounded-2xl shadow-sm border border-transparent hover:border-primary/50 transition-all cursor-pointer">
+<div class="flex items-center justify-center rounded-xl bg-primary/10 text-primary shrink-0 size-12">
+<span class="material-symbols-outlined text-[24px]">tv</span>
+</div>
+<div class="flex flex-col justify-center flex-1">
+<p class="text-slate-900 dark:text-white text-base font-bold leading-normal line-clamp-1">Samsung 7 Series (55")</p>
+<div class="flex items-center gap-2">
+<span class="size-1.5 rounded-full bg-green-500"></span>
+<p class="text-text-secondary-light dark:text-text-secondary-dark text-xs font-medium leading-normal line-clamp-2">Wireless Display • Ready</p>
+</div>
+</div>
+<div class="shrink-0 flex flex-col items-end gap-1">
+<span class="material-symbols-outlined text-primary text-[20px]">wifi</span>
+<span class="text-[10px] font-bold text-primary">Strong</span>
+</div>
+</div>
+<!-- List Item 2: Chromecast -->
+<div class="group relative flex items-center gap-4 bg-card-light dark:bg-card-dark p-4 rounded-2xl shadow-sm border border-transparent hover:border-primary/50 transition-all cursor-pointer">
+<div class="flex items-center justify-center rounded-xl bg-orange-500/10 text-orange-500 shrink-0 size-12">
+<span class="material-symbols-outlined text-[24px]">cast</span>
+</div>
+<div class="flex flex-col justify-center flex-1">
+<p class="text-slate-900 dark:text-white text-base font-bold leading-normal line-clamp-1">Bedroom Cast</p>
+<p class="text-text-secondary-light dark:text-text-secondary-dark text-xs font-medium leading-normal line-clamp-2">Google Cast</p>
+</div>
+<div class="shrink-0 flex flex-col items-end gap-1">
+<span class="material-symbols-outlined text-text-secondary-light dark:text-text-secondary-dark text-[20px]">wifi</span>
+</div>
+</div>
+<!-- List Item 3: Roku -->
+<div class="group relative flex items-center gap-4 bg-card-light dark:bg-card-dark p-4 rounded-2xl shadow-sm border border-transparent hover:border-primary/50 transition-all cursor-pointer">
+<div class="flex items-center justify-center rounded-xl bg-purple-500/10 text-purple-500 shrink-0 size-12">
+<span class="material-symbols-outlined text-[24px]">monitor</span>
+</div>
+<div class="flex flex-col justify-center flex-1">
+<p class="text-slate-900 dark:text-white text-base font-bold leading-normal line-clamp-1">Roku Express</p>
+<p class="text-text-secondary-light dark:text-text-secondary-dark text-xs font-medium leading-normal line-clamp-2">AirPlay / DLNA</p>
+</div>
+<div class="shrink-0 flex flex-col items-end gap-1">
+<span class="material-symbols-outlined text-primary text-[20px]">wifi</span>
+</div>
+</div>
+<!-- List Item 4: Other (Generic) -->
+<div class="group relative flex items-center gap-4 bg-card-light dark:bg-card-dark p-4 rounded-2xl shadow-sm border border-transparent hover:border-primary/50 transition-all cursor-pointer opacity-70">
+<div class="flex items-center justify-center rounded-xl bg-slate-100 dark:bg-slate-700 text-slate-500 dark:text-slate-400 shrink-0 size-12">
+<span class="material-symbols-outlined text-[24px]">speaker</span>
+</div>
+<div class="flex flex-col justify-center flex-1">
+<p class="text-slate-900 dark:text-white text-base font-bold leading-normal line-clamp-1">Unknown Device</p>
+<p class="text-text-secondary-light dark:text-text-secondary-dark text-xs font-medium leading-normal line-clamp-2">Bluetooth Audio</p>
+</div>
+<div class="shrink-0 flex flex-col items-end gap-1">
+<span class="material-symbols-outlined text-text-secondary-light dark:text-text-secondary-dark text-[20px]">signal_wifi_bad</span>
+<span class="text-[10px] font-bold text-text-secondary-light dark:text-text-secondary-dark">Weak</span>
+</div>
+</div>
+</div>
+<!-- "Not found" helper -->
+<div class="mt-8 flex justify-center">
+<button class="flex items-center gap-2 px-6 py-3 rounded-full bg-card-light dark:bg-card-dark shadow-sm border border-slate-200 dark:border-slate-800 text-sm font-bold text-primary hover:bg-primary hover:text-white transition-colors">
+<span class="material-symbols-outlined text-[18px]">refresh</span>
+                    Scan Again
+                </button>
+</div>
+</div>
+<!-- Bottom Action Bar / Status -->
+<div class="shrink-0 p-4 pt-2 bg-gradient-to-t from-background-light via-background-light to-transparent dark:from-background-dark dark:via-background-dark dark:to-transparent z-20">
+<div class="flex items-center justify-between gap-4 p-4 rounded-xl bg-primary text-white shadow-lg shadow-primary/20">
+<div class="flex items-center gap-3">
+<div class="size-2 rounded-full bg-white animate-pulse"></div>
+<span class="text-sm font-bold">Scanning for devices...</span>
+</div>
+<span class="material-symbols-outlined text-[20px] opacity-80">settings_remote</span>
+</div>
+</div>
+</div>
+</body></html>

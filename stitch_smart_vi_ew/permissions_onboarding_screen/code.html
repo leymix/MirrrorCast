@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Permissions Onboarding Screen</title>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Google Fonts: Space Grotesk -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Tailwind Config -->
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#135bec",
+                        "background-light": "#f6f6f8",
+                        "background-dark": "#101622",
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "2xl": "1rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark font-display antialiased text-slate-900 dark:text-white transition-colors duration-200">
+<!-- Main Container simulating mobile screen -->
+<div class="relative flex h-full min-h-screen w-full flex-col overflow-x-hidden mx-auto bg-background-light dark:bg-background-dark max-w-lg shadow-2xl">
+<!-- Decorative Ambient Glow (Dark Mode Only) -->
+<div class="absolute top-0 right-0 w-[300px] h-[300px] bg-primary/20 rounded-full blur-[100px] -translate-y-1/2 translate-x-1/2 pointer-events-none mix-blend-screen opacity-0 dark:opacity-100"></div>
+<!-- Header Section -->
+<div class="relative flex-none pt-8 pb-4 px-6 z-10">
+<!-- Page Indicators (Step 2 of 4) -->
+<div class="flex w-full flex-row items-center justify-start gap-2 pb-8">
+<div class="h-1.5 flex-1 rounded-full bg-primary/30 dark:bg-gray-700"></div>
+<div class="h-1.5 flex-1 rounded-full bg-primary"></div>
+<div class="h-1.5 flex-1 rounded-full bg-primary/10 dark:bg-gray-800"></div>
+<div class="h-1.5 flex-1 rounded-full bg-primary/10 dark:bg-gray-800"></div>
+</div>
+<h1 class="text-[32px] font-bold leading-tight mb-3 tracking-tight">Let's get connected</h1>
+<p class="text-base text-gray-500 dark:text-gray-400 font-normal leading-relaxed pr-4">
+                To mirror your screen effectively, we need access to a few things on your device.
+            </p>
+</div>
+<!-- Scrollable Permissions List -->
+<div class="flex-grow px-6 py-4 space-y-4 z-10">
+<!-- Permission Card 1: Local Network (Priority) -->
+<div class="group relative flex items-center justify-between p-4 bg-white dark:bg-[#1C2535] rounded-2xl shadow-sm border border-gray-100 dark:border-gray-800/50 transition-all hover:shadow-md">
+<div class="flex items-center gap-4">
+<div class="flex-shrink-0 flex items-center justify-center rounded-xl bg-primary/10 text-primary w-12 h-12 group-hover:bg-primary group-hover:text-white transition-colors duration-300">
+<span class="material-symbols-outlined text-[24px]">wifi_tethering</span>
+</div>
+<div class="flex flex-col justify-center pr-2">
+<p class="text-base font-bold text-gray-900 dark:text-white leading-none mb-1">Local Network</p>
+<p class="text-xs text-gray-500 dark:text-gray-400 leading-normal line-clamp-2">Discover and connect to your TV.</p>
+</div>
+</div>
+<div class="shrink-0">
+<button class="flex items-center justify-center cursor-pointer rounded-lg h-9 px-4 bg-primary text-white text-sm font-semibold shadow-lg shadow-primary/20 active:scale-95 transition-transform hover:bg-primary/90">
+                        Allow
+                    </button>
+</div>
+</div>
+<!-- Permission Card 2: Notifications -->
+<div class="group relative flex items-center justify-between p-4 bg-white dark:bg-[#1C2535] rounded-2xl shadow-sm border border-gray-100 dark:border-gray-800/50 transition-all hover:shadow-md">
+<div class="flex items-center gap-4">
+<div class="flex-shrink-0 flex items-center justify-center rounded-xl bg-gray-100 dark:bg-[#2A3445] text-gray-600 dark:text-gray-300 w-12 h-12 group-hover:text-primary transition-colors duration-300">
+<span class="material-symbols-outlined text-[24px]">notifications</span>
+</div>
+<div class="flex flex-col justify-center pr-2">
+<p class="text-base font-bold text-gray-900 dark:text-white leading-none mb-1">Notifications</p>
+<p class="text-xs text-gray-500 dark:text-gray-400 leading-normal line-clamp-2">Get alerts for connection status.</p>
+</div>
+</div>
+<div class="shrink-0">
+<button class="flex items-center justify-center cursor-pointer rounded-lg h-9 px-4 bg-gray-100 dark:bg-[#2A3445] text-gray-900 dark:text-white text-sm font-semibold hover:bg-gray-200 dark:hover:bg-[#344055] active:scale-95 transition-all">
+                        Allow
+                    </button>
+</div>
+</div>
+<!-- Permission Card 3: Bluetooth -->
+<div class="group relative flex items-center justify-between p-4 bg-white dark:bg-[#1C2535] rounded-2xl shadow-sm border border-gray-100 dark:border-gray-800/50 transition-all hover:shadow-md">
+<div class="flex items-center gap-4">
+<div class="flex-shrink-0 flex items-center justify-center rounded-xl bg-gray-100 dark:bg-[#2A3445] text-gray-600 dark:text-gray-300 w-12 h-12 group-hover:text-primary transition-colors duration-300">
+<span class="material-symbols-outlined text-[24px]">bluetooth</span>
+</div>
+<div class="flex flex-col justify-center pr-2">
+<p class="text-base font-bold text-gray-900 dark:text-white leading-none mb-1">Bluetooth</p>
+<p class="text-xs text-gray-500 dark:text-gray-400 leading-normal line-clamp-2">Helps find nearby devices faster.</p>
+</div>
+</div>
+<div class="shrink-0">
+<button class="flex items-center justify-center cursor-pointer rounded-lg h-9 px-4 bg-gray-100 dark:bg-[#2A3445] text-gray-900 dark:text-white text-sm font-semibold hover:bg-gray-200 dark:hover:bg-[#344055] active:scale-95 transition-all">
+                        Allow
+                    </button>
+</div>
+</div>
+<!-- Permission Card 4: Microphone (Optional State) -->
+<div class="group relative flex items-center justify-between p-4 bg-white dark:bg-[#1C2535] rounded-2xl shadow-sm border border-gray-100 dark:border-gray-800/50 opacity-60">
+<div class="flex items-center gap-4">
+<div class="flex-shrink-0 flex items-center justify-center rounded-xl bg-gray-100 dark:bg-[#2A3445] text-gray-400 w-12 h-12">
+<span class="material-symbols-outlined text-[24px]">mic</span>
+</div>
+<div class="flex flex-col justify-center pr-2">
+<p class="text-base font-bold text-gray-900 dark:text-white leading-none mb-1">Microphone</p>
+<p class="text-xs text-gray-500 dark:text-gray-400 leading-normal line-clamp-2">For voice commands (Optional)</p>
+</div>
+</div>
+<div class="shrink-0">
+<!-- Checkmark state simulation -->
+<div class="flex items-center justify-center h-9 w-9 rounded-full bg-green-500/10 text-green-500">
+<span class="material-symbols-outlined text-[20px]">check</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Sticky Footer -->
+<div class="flex-none p-6 pb-8 bg-background-light dark:bg-background-dark z-20">
+<!-- Subtle gradient fade from content to footer -->
+<div class="absolute -top-12 left-0 w-full h-12 bg-gradient-to-t from-background-light dark:from-background-dark to-transparent pointer-events-none"></div>
+<button class="w-full h-14 flex items-center justify-center rounded-xl bg-primary text-white font-bold text-lg shadow-xl shadow-primary/25 active:scale-[0.98] transition-all hover:bg-primary/90">
+                Continue
+            </button>
+<button class="w-full h-10 mt-4 flex items-center justify-center rounded-lg text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white font-medium text-sm transition-colors">
+                Maybe Later
+            </button>
+</div>
+</div>
+</body></html>

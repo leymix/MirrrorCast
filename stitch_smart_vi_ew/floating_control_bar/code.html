@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Floating Control Bar</title>
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Tailwind Configuration -->
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#135bec",
+                        "background-light": "#f6f6f8",
+                        "background-dark": "#101622",
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                    animation: {
+                        'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        /* Custom scrollbar hiding for clean UI */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+        /* Glassmorphism utility */
+        .glass-panel {
+            background: rgba(16, 22, 34, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark font-display h-screen w-full overflow-hidden relative selection:bg-primary/30 flex flex-col">
+<!-- Simulated Mirrored Content (Background) -->
+<!-- This represents the content being mirrored, dimmed to emphasize the UI overlay -->
+<div class="absolute inset-0 z-0 bg-cover bg-center transition-all duration-700 ease-in-out scale-105" data-alt="Abstract fluid gradient background representing mirrored screen content" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBMXzGGuZeC341dGixqkQdtza_e6UtPX8g7jmByiy5STGDobaM6y4N4noWkP0641f3O-y0GpwGzzqaK3dPBUMUC5NTWwxeDG2I4eJxZpdUXFdUurFFmWUQ-tfF-RQFOmcTqsjAlfn5jH3XtZzLUxX09Y_N_vinClWTKwGgHP6SSjGCZhBlt_zOG5cq0ReSIRvIIHzlN_qVM5C03gjFW_u-PjKJSrEHd3N-zCceaYor3V0E1o9rXvmlEjyv427IPfK93o38ZGrEmsFs');">
+<div class="absolute inset-0 bg-background-dark/30 backdrop-blur-[2px]"></div>
+</div>
+<!-- UI Overlay Layer -->
+<div class="relative z-10 w-full h-full flex flex-col justify-between pointer-events-none p-4 pb-8 md:pb-12">
+<!-- Top Area: Collapsed State Visualization (Simulating 'Minimized' view) -->
+<div class="w-full flex justify-end items-start pt-12 pr-2">
+<!-- This is the 'Collapsed' state bubble mentioned in plan, floating on the side -->
+<button class="pointer-events-auto group flex items-center gap-0 hover:gap-2 bg-background-dark/90 text-white p-3 rounded-full shadow-lg border border-white/10 transition-all duration-300 ease-out translate-x-1/2 hover:translate-x-0 hover:pr-5">
+<span class="material-symbols-outlined text-primary group-hover:text-white transition-colors">cast_connected</span>
+<span class="w-0 overflow-hidden group-hover:w-auto text-sm font-bold whitespace-nowrap transition-all opacity-0 group-hover:opacity-100">04:20</span>
+</button>
+</div>
+<!-- Bottom Area: The Main Floating Control Bar -->
+<div class="w-full flex flex-col items-center gap-3 pointer-events-auto transition-all duration-500 transform translate-y-0 opacity-100">
+<!-- Status Pill (MetaText Component variation) -->
+<div class="flex items-center gap-2 px-4 py-1.5 glass-panel rounded-full shadow-sm mb-1">
+<div class="relative flex h-2.5 w-2.5">
+<span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
+<span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-primary"></span>
+</div>
+<span class="text-white/90 text-xs font-medium tracking-wider uppercase">Live Mirroring</span>
+</div>
+<!-- Main Control Bar (ToolBar Component variation) -->
+<div class="glass-panel w-full max-w-[380px] rounded-2xl p-1.5 shadow-2xl ring-1 ring-white/5 flex items-center justify-between gap-1 transition-all hover:scale-[1.02]">
+<!-- Section 1: Drag Handle -->
+<div class="h-12 w-8 flex items-center justify-center cursor-grab active:cursor-grabbing group/drag">
+<span class="material-symbols-outlined text-white/30 group-hover/drag:text-white/60 text-[20px] transition-colors rotate-90 sm:rotate-0">drag_indicator</span>
+</div>
+<!-- Divider -->
+<div class="h-6 w-px bg-white/10 rounded-full"></div>
+<!-- Section 2: Media Controls -->
+<div class="flex items-center gap-1 px-1">
+<!-- Pause/Resume -->
+<button class="relative group flex items-center justify-center w-11 h-11 rounded-xl text-white hover:bg-white/10 active:scale-95 transition-all">
+<span class="material-symbols-outlined text-[26px] fill-1 group-hover:text-primary transition-colors">pause</span>
+<!-- Tooltip hint -->
+<span class="absolute -top-10 bg-background-dark text-white text-[10px] px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none border border-white/10">Pause</span>
+</button>
+<!-- Rotate -->
+<button class="relative group flex items-center justify-center w-11 h-11 rounded-xl text-white/80 hover:text-white hover:bg-white/10 active:scale-95 transition-all">
+<span class="material-symbols-outlined text-[24px] transition-transform group-active:rotate-90">screen_rotation</span>
+<span class="absolute -top-10 bg-background-dark text-white text-[10px] px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none border border-white/10">Rotate</span>
+</button>
+</div>
+<!-- Divider -->
+<div class="h-6 w-px bg-white/10 rounded-full"></div>
+<!-- Section 3: Destructive Actions -->
+<div class="flex items-center gap-1 pl-1">
+<!-- Stop Mirroring -->
+<button class="relative group flex items-center justify-center h-11 px-4 rounded-xl bg-primary/20 hover:bg-red-500/20 text-primary hover:text-red-400 active:scale-95 transition-all gap-2 overflow-hidden">
+<span class="material-symbols-outlined text-[22px]">stop_circle</span>
+<span class="text-sm font-bold hidden sm:block">Stop</span>
+</button>
+</div>
+<!-- Section 4: Collapse -->
+<button class="h-11 w-8 flex items-center justify-center rounded-lg text-white/40 hover:text-white hover:bg-white/5 transition-colors ml-auto">
+<span class="material-symbols-outlined text-[20px]">expand_more</span>
+</button>
+</div>
+</div>
+</div>
+</body></html>

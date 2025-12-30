@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Connection Status Screen</title>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#135bec",
+                        "background-light": "#f6f6f8",
+                        "background-dark": "#101622",
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk", "sans-serif"],
+                        "body": ["Noto Sans", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "2xl": "1rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        /* Custom font import since the example used inline styles but we want it cleaner */
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;700&family=Space+Grotesk:wght@300;400;500;600;700&display=swap');
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="font-display antialiased">
+<div class="relative flex h-screen w-full flex-col bg-background-light dark:bg-background-dark transition-colors duration-300 overflow-hidden">
+<!-- Decorative Background Gradient Blob -->
+<div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-primary/20 rounded-full blur-[100px] pointer-events-none opacity-50 dark:opacity-30"></div>
+<!-- Top App Bar -->
+<div class="flex items-center p-4 pb-2 justify-between z-10">
+<button class="text-gray-900 dark:text-white p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-800 transition-colors">
+<span class="material-symbols-outlined">expand_more</span>
+</button>
+<h2 class="text-gray-900 dark:text-white text-lg font-bold leading-tight tracking-[-0.015em] text-center">Screen Mirroring</h2>
+<button class="text-gray-900 dark:text-white p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-800 transition-colors">
+<span class="material-symbols-outlined">help</span>
+</button>
+</div>
+<!-- Main Content Area -->
+<div class="flex-1 flex flex-col items-center justify-center w-full px-6 z-10 relative">
+<!-- Central Animation Hub -->
+<div class="relative flex items-center justify-center mb-12">
+<!-- Outer Pulse Ring 3 -->
+<div class="absolute w-80 h-80 rounded-full border border-primary/10 dark:border-primary/20 scale-100"></div>
+<!-- Outer Pulse Ring 2 -->
+<div class="absolute w-60 h-60 rounded-full border border-primary/20 dark:border-primary/30 scale-100"></div>
+<!-- Outer Pulse Ring 1 -->
+<div class="absolute w-40 h-40 rounded-full border-2 border-primary/40 dark:border-primary/50 scale-100 shadow-[0_0_30px_rgba(19,91,236,0.2)]"></div>
+<!-- Core Circle -->
+<div class="relative w-24 h-24 bg-gradient-to-tr from-primary to-blue-500 rounded-full flex items-center justify-center shadow-lg shadow-primary/40 z-20">
+<!-- Icon changing based on state (visual representation) -->
+<span class="material-symbols-outlined text-white text-4xl">cast_connected</span>
+<!-- Small badge indicating phone source -->
+<div class="absolute -bottom-1 -right-1 w-8 h-8 bg-background-light dark:bg-background-dark rounded-full flex items-center justify-center border-2 border-primary">
+<span class="material-symbols-outlined text-primary text-sm font-bold">smartphone</span>
+</div>
+</div>
+</div>
+<!-- Status Text -->
+<div class="flex flex-col items-center gap-2 text-center max-w-sm mx-auto">
+<h2 class="text-gray-900 dark:text-white tracking-light text-[28px] font-bold leading-tight">
+                    Connecting...
+                </h2>
+<div class="flex items-center justify-center gap-2 px-4 py-1 rounded-full bg-gray-100 dark:bg-gray-800/50 mt-1">
+<span class="material-symbols-outlined text-gray-500 dark:text-gray-400 text-lg">tv</span>
+<p class="text-gray-600 dark:text-gray-300 text-base font-normal leading-normal">
+                        Samsung 7 Series (55)
+                    </p>
+</div>
+</div>
+<!-- Device Target Preview (Optional visual cue) -->
+<div class="mt-8 w-full max-w-[200px] opacity-60">
+<div class="w-full gap-1 overflow-hidden aspect-[16/9] rounded-lg flex border border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-800/50 relative justify-center items-center">
+<span class="material-symbols-outlined text-4xl text-gray-400 dark:text-gray-500">tv_gen</span>
+</div>
+</div>
+</div>
+<!-- Footer Actions -->
+<div class="w-full p-6 pb-8 z-10">
+<button class="w-full flex cursor-pointer items-center justify-center overflow-hidden rounded-lg h-14 px-5 bg-gray-200 dark:bg-gray-800 hover:bg-gray-300 dark:hover:bg-gray-700 active:scale-[0.98] transition-all duration-200 text-gray-900 dark:text-white text-base font-bold leading-normal tracking-[0.015em]">
+<span class="truncate">Cancel</span>
+</button>
+</div>
+</div>
+</body></html>
