@@ -19,6 +19,13 @@ release/
 .gradle/
 build/
 
+# Gradle Wrapper - DO NOT IGNORE (needed for CI/CD)
+# Keep these files:
+# gradle/wrapper/gradle-wrapper.jar
+# gradle/wrapper/gradle-wrapper.properties
+# gradlew
+# gradlew.bat
+
 # Local configuration file (sdk path, etc)
 local.properties
 
@@ -106,6 +113,7 @@ $RECYCLE.BIN/
 
 # Package Files
 *.jar
+!gradle/wrapper/gradle-wrapper.jar
 *.war
 *.nar
 *.ear

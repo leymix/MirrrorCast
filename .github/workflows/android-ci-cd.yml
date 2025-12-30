@@ -40,6 +40,12 @@ jobs:
         distribution: 'temurin'
         java-version: '17'
         cache: 'gradle'
+      
+    - name: Override Java Home for CI (Linux)
+      run: |
+        # Remove Windows-specific Java home path for CI/CD
+        sed -i 's|org.gradle.java.home=.*|# org.gradle.java.home (removed for CI/CD - using GitHub Actions JDK)|' gradle.properties || true
+        echo "CI/CD: Using GitHub Actions JDK instead of Windows path"
         
     - name: Grant execute permission for gradlew
       run: chmod +x gradlew
@@ -61,10 +67,18 @@ jobs:
         echo "environment=$ENV" >> $GITHUB_OUTPUT
         echo "Building for environment: $ENV"
       
+    - name: Verify Gradle Wrapper
+      run: |
+        ls -la gradle/wrapper/
+        if [ ! -f "gradle/wrapper/gradle-wrapper.jar" ]; then
+          echo "ERROR: gradle-wrapper.jar not found!"
+          exit 1
+        fi
+      
     - name: Build Debug APK
       run: |
         ENV="${{ steps.env.outputs.environment }}"
-        ./gradlew assemble${ENV}Debug
+        ./gradlew assemble${ENV}Debug --no-daemon
       
     - name: Setup Keystore for Release Build
       if: github.event_name == 'push' && (github.ref == 'refs/heads/main' || github.ref == 'refs/heads/staging' || github.ref == 'refs/heads/develop')
@@ -75,7 +89,7 @@ jobs:
       if: github.event_name == 'push' && (github.ref == 'refs/heads/main' || github.ref == 'refs/heads/staging' || github.ref == 'refs/heads/develop')
       run: |
         ENV="${{ steps.env.outputs.environment }}"
-        ./gradlew assemble${ENV}Release
+        ./gradlew assemble${ENV}Release --no-daemon
       env:
         KEYSTORE_PASSWORD: ${{ secrets.KEYSTORE_PASSWORD }}
         KEY_PASSWORD: ${{ secrets.KEY_PASSWORD }}
@@ -111,6 +125,12 @@ jobs:
         distribution: 'temurin'
         java-version: '17'
         cache: 'gradle'
+      
+    - name: Override Java Home for CI (Linux)
+      run: |
+        # Remove Windows-specific Java home path for CI/CD
+        sed -i 's|org.gradle.java.home=.*|# org.gradle.java.home (removed for CI/CD - using GitHub Actions JDK)|' gradle.properties || true
+        echo "CI/CD: Using GitHub Actions JDK instead of Windows path"
         
     - name: Grant execute permission for gradlew
       run: chmod +x gradlew
@@ -128,6 +148,14 @@ jobs:
         echo "environment=$ENV" >> $GITHUB_OUTPUT
         echo "Releasing for environment: $ENV"
       
+    - name: Verify Gradle Wrapper
+      run: |
+        ls -la gradle/wrapper/
+        if [ ! -f "gradle/wrapper/gradle-wrapper.jar" ]; then
+          echo "ERROR: gradle-wrapper.jar not found!"
+          exit 1
+        fi
+      
     - name: Setup Keystore
       run: |
         echo "${{ secrets.KEYSTORE_FILE }}" | base64 -d > keystore.jks
@@ -135,7 +163,7 @@ jobs:
     - name: Build Release APK
       run: |
         ENV="${{ steps.env.outputs.environment }}"
-        ./gradlew assemble${ENV}Release
+        ./gradlew assemble${ENV}Release --no-daemon
       env:
         KEYSTORE_PASSWORD: ${{ secrets.KEYSTORE_PASSWORD }}
         KEY_PASSWORD: ${{ secrets.KEY_PASSWORD }}
