@@ -38,6 +38,7 @@ import com.mirrorcast.ui.components.BigConnectButton
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Cast
 import androidx.compose.material.icons.filled.Lock
+import com.mirrorcast.BuildConfig
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
@@ -140,6 +141,15 @@ fun OnboardingScreen(
                     color = Color.Gray
                 )
             }
+            
+            Spacer(modifier = Modifier.height(8.dp))
+            
+            // Version info
+            Text(
+                text = "Version ${BuildConfig.VERSION_NAME}",
+                style = MaterialTheme.typography.labelSmall,
+                color = Color.Gray.copy(alpha = 0.7f)
+            )
         }
     }
 }
