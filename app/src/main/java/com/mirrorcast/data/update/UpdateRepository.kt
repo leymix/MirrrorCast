@@ -47,7 +47,12 @@ class UpdateRepository(
     suspend fun checkForUpdate(): UpdateInfo? {
         return try {
             // Parse GitHub repository from BuildConfig
-            val repoInfo = BuildConfig.GITHUB_REPO.split("/")
+            val githubRepo = BuildConfig.GITHUB_REPO
+            if (githubRepo.isBlank() || githubRepo == "YOUR_GITHUB_USERNAME/MirrorCast") {
+                return null // Repository not configured
+            }
+            
+            val repoInfo = githubRepo.split("/")
             if (repoInfo.size != 2) {
                 return null // Invalid repository format
             }
