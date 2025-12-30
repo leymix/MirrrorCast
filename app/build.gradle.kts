@@ -28,7 +28,7 @@ android {
         minSdk = 26
         targetSdk = 34
         versionCode = 1
-        versionName = "1.0"
+        versionName = "1.0.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables {
@@ -111,6 +111,8 @@ android {
             resValue("string", "app_name", "CastLink Dev")
             buildConfigField("String", "ENVIRONMENT", "\"dev\"")
             buildConfigField("String", "API_BASE_URL", "\"https://api-dev.mirrorcast.com\"")
+            // GitHub repository bilgisi - kendi repository'nizi buraya girin
+            buildConfigField("String", "GITHUB_REPO", "\"YOUR_GITHUB_USERNAME/MirrorCast\"")
         }
         
         create("stg") {
@@ -120,6 +122,8 @@ android {
             resValue("string", "app_name", "CastLink Staging")
             buildConfigField("String", "ENVIRONMENT", "\"staging\"")
             buildConfigField("String", "API_BASE_URL", "\"https://api-staging.mirrorcast.com\"")
+            // GitHub repository bilgisi - kendi repository'nizi buraya girin
+            buildConfigField("String", "GITHUB_REPO", "\"YOUR_GITHUB_USERNAME/MirrorCast\"")
         }
         
         create("prod") {
@@ -127,6 +131,9 @@ android {
             resValue("string", "app_name", "CastLink")
             buildConfigField("String", "ENVIRONMENT", "\"production\"")
             buildConfigField("String", "API_BASE_URL", "\"https://api.mirrorcast.com\"")
+            // GitHub repository bilgisi - kendi repository'nizi buraya girin
+            // Örnek: "owner/repo" formatında
+            buildConfigField("String", "GITHUB_REPO", "\"YOUR_GITHUB_USERNAME/MirrorCast\"")
         }
     }
 }
@@ -149,6 +156,15 @@ dependencies {
 
     // DataStore
     implementation("androidx.datastore:datastore-preferences:1.0.0")
+
+    // Network (for update checking)
+    implementation("com.squareup.retrofit2:retrofit:2.9.0")
+    implementation("com.squareup.retrofit2:converter-gson:2.9.0")
+    implementation("com.squareup.okhttp3:okhttp:4.12.0")
+    implementation("com.squareup.okhttp3:logging-interceptor:4.12.0")
+
+    // Coroutines
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.3")
 
     // Testing
     testImplementation("junit:junit:4.13.2")
