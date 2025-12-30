@@ -1,15 +1,9 @@
 name: Android CI/CD
 
 on:
-  push:
-    branches:
-      - main
-      - develop
-      - staging
   pull_request:
     branches:
       - main
-      - develop
       - staging
   workflow_dispatch:
     inputs:
@@ -55,17 +49,15 @@ jobs:
       run: |
         if [ "${{ github.event_name }}" == "workflow_dispatch" ]; then
           ENV="${{ github.event.inputs.environment }}"
-        elif [ "${{ github.ref }}" == "refs/heads/main" ]; then
+        elif [ "${{ github.base_ref }}" == "main" ]; then
           ENV="prod"
-        elif [ "${{ github.ref }}" == "refs/heads/staging" ]; then
+        elif [ "${{ github.base_ref }}" == "staging" ]; then
           ENV="stg"
-        elif [ "${{ github.ref }}" == "refs/heads/develop" ]; then
-          ENV="dev"
         else
-          ENV="dev"
+          ENV="stg"
         fi
         echo "environment=$ENV" >> $GITHUB_OUTPUT
-        echo "Building for environment: $ENV"
+        echo "Building for environment: $ENV (PR to ${{ github.base_ref }})"
       
     - name: Verify Gradle Wrapper
       run: |
@@ -80,40 +72,17 @@ jobs:
         ENV="${{ steps.env.outputs.environment }}"
         ./gradlew assemble${ENV}Debug --no-daemon
       
-    - name: Setup Keystore for Release Build
-      if: github.event_name == 'push' && (github.ref == 'refs/heads/main' || github.ref == 'refs/heads/staging' || github.ref == 'refs/heads/develop')
-      run: |
-        echo "${{ secrets.KEYSTORE_FILE }}" | base64 -d > keystore.jks
-        
-    - name: Build Release APK
-      if: github.event_name == 'push' && (github.ref == 'refs/heads/main' || github.ref == 'refs/heads/staging' || github.ref == 'refs/heads/develop')
-      run: |
-        ENV="${{ steps.env.outputs.environment }}"
-        ./gradlew assemble${ENV}Release --no-daemon
-      env:
-        KEYSTORE_PASSWORD: ${{ secrets.KEYSTORE_PASSWORD }}
-        KEY_PASSWORD: ${{ secrets.KEY_PASSWORD }}
-        KEYSTORE_FILE: keystore.jks
-        
     - name: Upload Debug APK
       uses: actions/upload-artifact@v4
       with:
         name: debug-apk-${{ steps.env.outputs.environment }}
         path: app/build/outputs/apk/${{ steps.env.outputs.environment }}/debug/app-${{ steps.env.outputs.environment }}-debug.apk
         retention-days: 7
-        
-    - name: Upload Release APK
-      if: github.event_name == 'push' && (github.ref == 'refs/heads/main' || github.ref == 'refs/heads/staging' || github.ref == 'refs/heads/develop')
-      uses: actions/upload-artifact@v4
-      with:
-        name: release-apk-${{ steps.env.outputs.environment }}
-        path: app/build/outputs/apk/${{ steps.env.outputs.environment }}/release/app-${{ steps.env.outputs.environment }}-release.apk
-        retention-days: 30
 
   release:
     needs: build
     runs-on: ubuntu-latest
-    if: github.event_name == 'workflow_dispatch' || (github.event_name == 'push' && github.ref == 'refs/heads/main' && contains(github.event.head_commit.message, '[release]'))
+    if: github.event_name == 'workflow_dispatch'
     
     steps:
     - name: Checkout code
