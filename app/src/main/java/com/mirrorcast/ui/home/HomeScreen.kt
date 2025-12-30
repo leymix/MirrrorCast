@@ -18,6 +18,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Devices
 import androidx.compose.material.icons.filled.HelpOutline
 import androidx.compose.material.icons.filled.Home
 import androidx.compose.material.icons.filled.Settings
@@ -52,6 +53,7 @@ import com.mirrorcast.ui.components.DeviceListItem
 @Composable
 fun HomeScreen(
     onSettingsClick: () -> Unit,
+    onMyDevicesClick: () -> Unit,
     modifier: Modifier = Modifier,
     viewModel: HomeViewModel
 ) {
@@ -143,6 +145,15 @@ fun HomeScreen(
                          textAlign = androidx.compose.ui.text.style.TextAlign.Center,
                          lineHeight = 10.sp
                      )
+                 }
+                 
+                 // My Devices Button
+                 Column(
+                     horizontalAlignment = Alignment.CenterHorizontally,
+                     modifier = Modifier.clickable { onMyDevicesClick() }
+                 ) {
+                     Icon(Icons.Default.Devices, contentDescription = "My Devices", tint = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.6f))
+                     Text("My Devices", style = MaterialTheme.typography.labelSmall, color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.6f))
                  }
                  
                  // Settings

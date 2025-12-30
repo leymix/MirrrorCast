@@ -87,6 +87,20 @@ class MainActivity : ComponentActivity() {
                             )
                             HomeScreen(
                                 onSettingsClick = { currentScreen = "settings" },
+                                onMyDevicesClick = { currentScreen = "mydevices" },
+                                viewModel = viewModel
+                            )
+                        }
+                        "mydevices" -> {
+                            val viewModel: com.mirrorcast.ui.home.HomeViewModel = androidx.lifecycle.viewmodel.compose.viewModel(
+                                factory = com.mirrorcast.ui.home.HomeViewModel.provideFactory(
+                                    appContainer.discoveryRepository,
+                                    appContainer.streamingRepository,
+                                    this
+                                )
+                            )
+                            com.mirrorcast.ui.home.MyDevicesScreen(
+                                onBack = { currentScreen = "home" },
                                 viewModel = viewModel
                             )
                         }
