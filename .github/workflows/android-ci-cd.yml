@@ -80,7 +80,6 @@ jobs:
         retention-days: 7
 
   release:
-    needs: build
     runs-on: ubuntu-latest
     if: github.event_name == 'workflow_dispatch'
     
@@ -145,12 +144,16 @@ jobs:
         VERSION=$(grep versionName app/build.gradle.kts | sed 's/.*versionName = "\(.*\)".*/\1/')
         VERSION_CODE=$(grep versionCode app/build.gradle.kts | sed 's/.*versionCode = \(.*\).*/\1/')
         ENV_UPPER=$(echo "$ENV" | tr '[:lower:]' '[:upper:]')
+        TIMESTAMP=$(date +%Y%m%d-%H%M%S)
+        TAG_NAME="${ENV}-v${VERSION}-${TIMESTAMP}"
         echo "version=$VERSION" >> $GITHUB_OUTPUT
         echo "version_code=$VERSION_CODE" >> $GITHUB_OUTPUT
+        echo "tag_name=$TAG_NAME" >> $GITHUB_OUTPUT
         echo "## MirrorCast $ENV_UPPER v$VERSION" > release_notes.md
         echo "" >> release_notes.md
         echo "**Environment:** $ENV" >> release_notes.md
         echo "**Version Code:** $VERSION_CODE" >> release_notes.md
+        echo "**Build Date:** $(date -u +"%Y-%m-%d %H:%M:%S UTC")" >> release_notes.md
         echo "" >> release_notes.md
         echo "### Changes" >> release_notes.md
         git log --pretty=format:"- %s" -10 >> release_notes.md
@@ -160,10 +163,11 @@ jobs:
       with:
         files: app/build/outputs/apk/${{ steps.env.outputs.environment }}/release/app-${{ steps.env.outputs.environment }}-release.apk
         body_path: release_notes.md
-        tag_name: ${{ steps.env.outputs.environment }}-v${{ steps.release_notes.outputs.version }}
+        tag_name: ${{ steps.release_notes.outputs.tag_name }}
         name: MirrorCast ${{ steps.env.outputs.environment }} v${{ steps.release_notes.outputs.version }}
         draft: false
         prerelease: ${{ steps.env.outputs.environment != 'prod' }}
+        fail_on_unmatched_files: false
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
