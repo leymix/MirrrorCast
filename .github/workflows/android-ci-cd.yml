@@ -5,6 +5,10 @@ on:
     branches:
       - main
       - staging
+  push:
+    branches:
+      - main
+      - staging
   workflow_dispatch:
     inputs:
       environment:
@@ -81,7 +85,8 @@ jobs:
 
   release:
     runs-on: ubuntu-latest
-    if: github.event_name == 'workflow_dispatch'
+    needs: build
+    if: github.event_name == 'workflow_dispatch' || (github.event_name == 'push' && (github.ref == 'refs/heads/main' || github.ref == 'refs/heads/staging'))
     
     steps:
     - name: Checkout code
