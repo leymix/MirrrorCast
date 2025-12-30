@@ -62,7 +62,9 @@ jobs:
         echo "Building for environment: $ENV"
       
     - name: Build Debug APK
-      run: ./gradlew assemble${ steps.env.outputs.environment }Debug
+      run: |
+        ENV="${{ steps.env.outputs.environment }}"
+        ./gradlew assemble${ENV}Debug
       
     - name: Setup Keystore for Release Build
       if: github.event_name == 'push' && (github.ref == 'refs/heads/main' || github.ref == 'refs/heads/staging' || github.ref == 'refs/heads/develop')
@@ -71,7 +73,9 @@ jobs:
         
     - name: Build Release APK
       if: github.event_name == 'push' && (github.ref == 'refs/heads/main' || github.ref == 'refs/heads/staging' || github.ref == 'refs/heads/develop')
-      run: ./gradlew assemble${ steps.env.outputs.environment }Release
+      run: |
+        ENV="${{ steps.env.outputs.environment }}"
+        ./gradlew assemble${ENV}Release
       env:
         KEYSTORE_PASSWORD: ${{ secrets.KEYSTORE_PASSWORD }}
         KEY_PASSWORD: ${{ secrets.KEY_PASSWORD }}
@@ -80,16 +84,16 @@ jobs:
     - name: Upload Debug APK
       uses: actions/upload-artifact@v4
       with:
-        name: debug-apk-${ steps.env.outputs.environment }
-        path: app/build/outputs/apk/${ steps.env.outputs.environment }/debug/app-${ steps.env.outputs.environment }-debug.apk
+        name: debug-apk-${{ steps.env.outputs.environment }}
+        path: app/build/outputs/apk/${{ steps.env.outputs.environment }}/debug/app-${{ steps.env.outputs.environment }}-debug.apk
         retention-days: 7
         
     - name: Upload Release APK
       if: github.event_name == 'push' && (github.ref == 'refs/heads/main' || github.ref == 'refs/heads/staging' || github.ref == 'refs/heads/develop')
       uses: actions/upload-artifact@v4
       with:
-        name: release-apk-${ steps.env.outputs.environment }
-        path: app/build/outputs/apk/${ steps.env.outputs.environment }/release/app-${ steps.env.outputs.environment }-release.apk
+        name: release-apk-${{ steps.env.outputs.environment }}
+        path: app/build/outputs/apk/${{ steps.env.outputs.environment }}/release/app-${{ steps.env.outputs.environment }}-release.apk
         retention-days: 30
 
   release:
@@ -129,7 +133,9 @@ jobs:
         echo "${{ secrets.KEYSTORE_FILE }}" | base64 -d > keystore.jks
         
     - name: Build Release APK
-      run: ./gradlew assemble${ steps.env.outputs.environment }Release
+      run: |
+        ENV="${{ steps.env.outputs.environment }}"
+        ./gradlew assemble${ENV}Release
       env:
         KEYSTORE_PASSWORD: ${{ secrets.KEYSTORE_PASSWORD }}
         KEY_PASSWORD: ${{ secrets.KEY_PASSWORD }}
@@ -138,14 +144,15 @@ jobs:
     - name: Generate Release Notes
       id: release_notes
       run: |
+        ENV="${{ steps.env.outputs.environment }}"
         VERSION=$(grep versionName app/build.gradle.kts | sed 's/.*versionName = "\(.*\)".*/\1/')
         VERSION_CODE=$(grep versionCode app/build.gradle.kts | sed 's/.*versionCode = \(.*\).*/\1/')
-        ENV_UPPER=$(echo "${ steps.env.outputs.environment }" | tr '[:lower:]' '[:upper:]')
+        ENV_UPPER=$(echo "$ENV" | tr '[:lower:]' '[:upper:]')
         echo "version=$VERSION" >> $GITHUB_OUTPUT
         echo "version_code=$VERSION_CODE" >> $GITHUB_OUTPUT
         echo "## MirrorCast $ENV_UPPER v$VERSION" > release_notes.md
         echo "" >> release_notes.md
-        echo "**Environment:** ${ steps.env.outputs.environment }" >> release_notes.md
+        echo "**Environment:** $ENV" >> release_notes.md
         echo "**Version Code:** $VERSION_CODE" >> release_notes.md
         echo "" >> release_notes.md
         echo "### Changes" >> release_notes.md
@@ -154,10 +161,10 @@ jobs:
     - name: Create GitHub Release
       uses: softprops/action-gh-release@v1
       with:
-        files: app/build/outputs/apk/${ steps.env.outputs.environment }/release/app-${ steps.env.outputs.environment }-release.apk
+        files: app/build/outputs/apk/${{ steps.env.outputs.environment }}/release/app-${{ steps.env.outputs.environment }}-release.apk
         body_path: release_notes.md
-        tag_name: ${ steps.env.outputs.environment }-v${{ steps.release_notes.outputs.version }}
-        name: MirrorCast ${ steps.env.outputs.environment } v${{ steps.release_notes.outputs.version }}
+        tag_name: ${{ steps.env.outputs.environment }}-v${{ steps.release_notes.outputs.version }}
+        name: MirrorCast ${{ steps.env.outputs.environment }} v${{ steps.release_notes.outputs.version }}
         draft: false
         prerelease: ${{ steps.env.outputs.environment != 'prod' }}
       env:
